@@ -121,13 +121,13 @@ class SlurmScriptAdapter(SchedulerScriptAdapter):
 
         resources = {}
         resources.update(self._batch)
-        procs_in_batch = bool("procs" in resources)
         resources.update(
             {
                 resource: value for (resource, value) in step.run.items()
                 if value
             }
         )
+        procs_in_batch = bool("procs" in resources)
         # If neither Procs nor Nodes exist, throw an error
         procs = resources.get("procs")
         nodes = resources.get("nodes")
